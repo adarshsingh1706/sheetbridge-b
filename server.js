@@ -3,6 +3,8 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const sheetsRoutes = require("./routes/sheetsRoutes"); // Correct import
+const columnRoutes = require("./routes/columnRoutes"); // Import columnRoutes
+
 
 const app = express();
 app.use(express.json());
@@ -13,8 +15,9 @@ mongoose.connect(process.env.MONGO_URI, {})
     .catch(err => console.log(err));
 
 // Routes
+app.use("/api/columns", columnRoutes); 
 app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/sheets", sheetsRoutes); // Ensure correct routing
+app.use("/api/sheets", sheetsRoutes); 
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
