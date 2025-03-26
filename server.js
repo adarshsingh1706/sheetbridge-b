@@ -2,8 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const sheetsRoutes = require("./routes/sheetsRoutes"); // Correct import
-const columnRoutes = require("./routes/columnRoutes"); // Import columnRoutes
+const sheetsRoutes = require("./routes/sheetsRoutes"); 
+const columnRoutes = require("./routes/columnRoutes"); 
+const tableRoutes = require("./routes/tableRoutes");
 
 
 const app = express();
@@ -15,6 +16,7 @@ mongoose.connect(process.env.MONGO_URI, {})
     .catch(err => console.log(err));
 
 // Routes
+app.use("/api/tables", tableRoutes);  
 app.use("/api/columns", columnRoutes); 
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/sheets", sheetsRoutes); 
