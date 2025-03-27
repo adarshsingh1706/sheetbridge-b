@@ -24,12 +24,12 @@ exports.addColumn = async (req, res) => {
 
       const savedColumnConfig = await columnConfig.save();
 
-      // Log only essential info in production
+     
       console.log("Column added for User ID:", userId);
 
       res.status(201).json({ message: "Column added successfully", columnConfig: savedColumnConfig });
   } catch (error) {
-      // Log errors for debugging
+      // errors for debugging
       console.error("Error in addColumn:", error);
       res.status(500).json({ error: "Server error" });
   }
